@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    *{margin:0;padding:0;}
+    body{
+        font-family: helvetica,arial,sans-serif;
+        background: #efefef;
+        margin:0;
+    }
+    #wrapper{
+        width:980px;margin: 0 auto;
+    }
+    header{
+        position:relative;
+        height:70px;
+        margin:10px 0;
+        background:#fff;
+        border-radius:20px 0px 20px 0px;
+        box-shadow: 0px 12px 8px -9px #555;
+        padding:1px;
+    }
+    header section#title{
+        position:absolute;
+        width:300px;
+        height:65px;
+        left:0px;
+        top:0;
+    }
+    header h1{
+        padding: 9px 12px 0;
+        font-family: 'Lato',helvetica,sans-serif;
+        font-weight: 900;
+        font-size: 1.6em;
+        line-height: 1;
+        letter-spacing: -.025em;
+        color:#4eb8ea;
+
+    }
+    header h2{
+        padding:2px 12px;
+        font-family: "Source Sans Pro",helvetica,sans-serif;
+        font-weight: 400;
+        font-size: .9em;line-height: 1;
+        letter-spacing: -.025em;
+        color:#333;
+
+    }
+
+    form.search{
+        position:absolute;width:150px;
+        top:23px;right:20px;
+
+    }
+    .search input{
+        float:right;width:70px;
+        padding:2px 0 3px 5px;
+        border-radius:10px 0px 10px 0px;
+        font-family: "Source Sans Pro",helvetica,sans-serif;
+        font-weight: 400;
+        font-size: 1em;
+        color:#888;
+        outline: none;
+        -webkit-transition:2s width;
+    }
+    .search input:focus{
+        width:140px;
+    }
+    .search label{
+        display:none;
+    }
+    form.search input{
+        background-color:#ffffff;
+    }
+    form.search input::-webkit-input-placeholder{color:#ccc;}
+
+    nav.menu {
+        margin:19px auto;
+        padding:0;
+        text-align: center;
+        font-size: .8em;
+    }
+    nav.menu > ul {display: inline-block;}
+    nav.menu li{
+        float:left;
+        list-style-type: none;
+        position:relative;
+    }
+    nav.menu li a {
+        display: block;
+        padding:.25em .8em;
+        font-family: "Source Sans Pro",helvetica,sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size:1.2em;
+        text-align: left;
+        color:#fff;;
+        text-decoration:none;
+        -webkit-font-smoothing:antialiased;
+    }
+    nav.menu li.choice1 a{background: #f58c21;}
+    nav.menu li.choice2 a{background: #4eb8ea;}
+    nav.menu li.choice3 a{background: #d6e636;}
+    nav.menu li.choice4 a{background: #ee4c98;}
+    nav.menu li.choice5 a{background: #f58c21;}
+    nav.menu li:hover >a{
+        color:#555;
+        border-color:#fff;
+        border:0;
+    }
+    nav.menu li:last-child a{
+        border-bottom-right-radius: 10px;
+
+    }
+    nav.menu li:first-child a{
+        border-top-left-radius:10px;
+    }
+    nav.menu li ul{
+        opacity:0;visibility: hidden;
+        position:absolute;
+        width:12em;
+        left:0;
+        top:100%;
+        -webkity-transition:1s all;
+        -moz-transition:1s all;
+        transition:1s all;
+    }
+    nav.menu li:hover > ul{
+        opacity:1;
+        visibility: visible;
+    }
+    nav.menu li li{
+        float:none;
+    }
+    nav.menu li:first-child li a{border-top-left-radius:0px;}
+    nav.menu li li:first-child a{border-radius:0px;}
+    nav.menu li li:last-child a{
+        border-bottom-left-radius: 10px;
+    }
+    .no-csstransition nav.menu li ul{
+        visibility: visible;
+        opacity:1;
+        display: none;
+    }
+    .no-csstransition nav.menu li:hover > ul{
+        display:block;
+    }
+
+    section#feature_are{
+        overflow: hidden;
+        margin:16px 0 0;
+        padding:0 0 10px;
+    }
+    section#feature_are article{
+        float:left;width: 66%;
+    }
+    section#feature_are aside{
+        float:right;width:34%;
+    }
+
+    section#feature_are article .inner{
+        padding:12px;
+        background: #fff;
+        border-radius: 20px 0;
+        box-shadow: 0 12px 8px -9px #555;
+    }
+    section#feature_are article a{
+        text-decoration: none;
+    }
+    section#feature_are article img{
+        float:left;
+        padding 0 10px 10px 0;
+    }
+    section#feature_are article h4{
+        font-family: "Source Sans Pro",helvetica,sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1em;
+        color: #f58c21;
+        letter-spacing: -.025;
+    }
+    section#feature_are article h3{
+        font-family: Lato,helvetica,sans-serif;
+        font-style: none;
+        font-weight: 700;
+        font-size: 1.75em;
+        color: #555;
+        margin: 0px 0px 12px 0px;
+        letter-spacing: -.05em;
+    }
+    section#feature_are article#blog_leadoff p{
+        font-family: "Source Sans Pro",helvetica,sans-serif;
+        font-style: none;
+        font-weight: 400;
+        font-size: 1.1em;
+        line-height: 1.5em;
+        color: #616161;
+        margin: 0 0px;
+        text-align: justify;
+    }
+    section#feature_are article#blog_leadoff p::first-letter{
+        font-family: Lato,helvetica,sans-serif;
+        font-weight: 700;
+        font-size: 4.5em;
+        float: left;
+        margin: .05em .05em 0 0;
+        line-height: 0.6;
+        text-shadow: 1px 3px 3px #ccc;
+    }
+
+    section#feature_are article#blog_leadoff p::first-line{
+        font-variant: small-caps;
+        font-size: 1.2em;
+    }
+    
+    form.signin{
+    	width:19em;
+    	float:right;
+    	background:#fff;
+    	border-radius:10px 0 10px 0;
+    	box-shadow:0 12px 8px -9px #555;
+    }
+    
+    .signin fieldset{
+    	border:0;margin:10px 14px;
+    }
+    
+    .signin legend span{
+    font-family:Lato,helvetica,sans-serif;
+    font-weight:700;font-size:1.3em;line-height:1.1em;
+    color:#4eb8ea;
+    letter-spacing:-.05em;
+    }
+	.signin section{
+		overflow:hidden;
+		padding:.25em 0;
+	}
+	.signin section label{
+		font-family:"Source Sans Pro",helvetica,sans-serif;
+		font-weight:400;
+		float:left;
+		width:5em;
+		margin:.5em .3em 0 0;
+		line-height:1.1;
+		color:#555;
+	}
+	
+	.signin section input{
+		float:right;
+		width:10.5em;
+		margin:.2em 0 0 .5em;
+		padding:3px 10px 2px;
+		color:#555;
+		font-size:.8em;
+		outline:none;
+		border-radius:10px 0 10px 0;
+	}
+	input:-webkit-autofill{
+		color:#fff !important;
+	}
+	
+	.signin section input[type=submit]{
+		float:right;
+		width:auto;
+		margin:0 2px 3px 0;
+		padding:0 8px 3px;
+		font-size:1em;
+		font-weight:800;
+		color:#fff;
+		border:none;
+		background-color:#d6e636;
+		box-shadow:1px 1px 2px #888;
+	}
+	.signin section p{
+		float:right;
+		clear:both;
+		margin:.2em 0 0;
+		text-algin:right;
+		font-size:.8em;
+		line-height:1;
+		color:#555;
+		
+	}
+	.signin section p a{
+		color:#333;
+	}
+	.signin section p a:hover{
+		color:#777;
+		text-decoration:none;
+	}
+	.signin section p.direction.error{
+		display:none;color:#f00;
+	}
+	.signin section p.direction{
+		display:none;
+	}
+	
+	section#feature_are nav{
+		width:19em;
+		float:right;
+		margin:15px 0 0;
+		padding:.6em 0 0;
+		background:#fff;
+		border-radius:10px 0 10px 0;
+		box-shadow:0 12px 8px -9px #555;
+	}
+	
+	#feature_are nav h3{
+		padding:0 14px 0;
+		font-family:Lato,helvetica,sans-serif;
+		font-weight:700;
+		font-size:1.3em;
+		text-align:left;
+		color:#aaa;
+		letter-spacing:-.05em;
+	}
+	#feature_are nav ul{
+		margin:0em 0 10px 20px;
+	}
+	#feature_are nav li{
+		padding:.7em 0 0 2em;
+		position:relative;
+		list-style-type:none;
+	}
+	#feature_are nav li:before{
+		content:"";
+		position:absolute;
+		height:10px;
+		width:10px;
+		left:12px;
+		top:12px;
+		border-radius:5px 0 5px 0;
+		background-color:#d6e636;
+		box-shadow:1px 1px 2px #888;
+	}
+	#feature_are nav li a{
+		display:block;
+		text-decoration:none;
+		font-size:.9em;
+		color:#616161;
+	}
+	#feature_are nav li a:hover{
+		color:#000;
+	}
+	
+	section#book_area{
+		clear:both;
+		border-radius:20px 0px 20px 0px;
+		border:1px solid #f58c21;
+		margin:8px 0 16px;
+		overflow:hidden;
+	}
+	#book_area article{
+		float:left;
+		width:25%;
+		padding:10px 0;
+		background:none;
+	}
+	
+	#book_area article .inner{
+		position:relative;
+		width:140px;
+		margin:0 auto;
+	}
+	#book_area .inner h3{
+		position:absolute;
+		width:160px;
+		left:130%;bottom:5px;
+		transform:rotate(-90deg);
+		transform-origin:left bottom;
+		color:#ccc;
+		font-size:1.4em;
+		font-family:Lato,helvetica,sans-serif;
+		font-style:normal;
+		font-weight:900;
+		text-align:left;
+	}
+	#book_area article.right.last-child h3{
+		left:85%;
+	}
+	#book_area article img{
+		box-shadow:0 12px 8px -9px #555;
+	}
+	
+	#book_area article aside{
+		display:none;
+		position:absolute;
+		z-index:2;
+		width:200px;
+		background:#fff;
+		pdding:10px 2px 5px;
+		border:2px solid #f5821;
+		border-radius:10px 0px 10px 0px;
+		box-shadow:4px 4px 16px #555;
+		color:#555;
+		font-family:"Source Sans Pro",helvetica,sans-serif;
+		font-size:.8em;
+		line-height:1.5em;
+	}
+	#book_area article:hover aside{
+		display:block;
+	}
+	#book_area article aside li{
+		padding:.25em 0 .75em 1em;
+		list-style-type:none;
+		line-height:1.5em;
+		
+	}
+	#book_area article aside li a{
+	text-decoration:none;
+	font-size:1.2em;
+	color:#616161;
+	}
+	#book_area article aside li a:hover{
+		color:#333;
+	}
+	#book_area article.left aside{
+		left:84%;top:14px;
+	}
+	#book_area article.right aside{
+		right:84%;top:14px;
+	}
+	#book_area article aside:after{
+		content:"";
+		postion:absolute;
+		top:33px;
+		border:12px solide;
+		height:0px;width:0px;
+	}
+	#book_area article.left aside:after{
+		right:100%;
+		border-color:transparent #f58c21 transparent transparent;
+	}
+	#book_area article.right aside:after{
+		left:100%;
+		border-color:transparent transparent transparent  #f58c21;
+	}
+	#book_area article aside:before{
+		content:"";
+		position:absolute;
+		border:8px solid;
+		height:0px;width:0px;
+		z-index:100;
+		top:37px;
+		
+	}
+	#book_area article.left aside:before{
+		right:100%;
+		border-color:transparent white transparent transparent;
+	}
+	#book_area article.right aside:before{
+		left:100%;
+		border-color:transparent transparent transparent white;
+	}
+	
+	
+	footer{
+		padding:.5em 0 .35em 0;
+		text-align:center;
+		border-radius:10px 0px 10px 0px;
+		background:#fff;
+		box-shadow:0 12px 8px -9px #555;
+	}
+	footer p{
+		font-family:'Source Sans Pro';
+		font-weight:400;
+		font-size:.85em;
+		letter-spacing:-.05em;
+		color:#555;
+	}
+	footer p a{
+		font-family:'Source Sans Pro';
+		font-style:italic;
+		font-weight:700;
+		font-size:1em;
+		color:#4eb8ea;
+		text-decoration:none;
+	}
+	footer p a:hover{
+		color:#777;
+	}
+	footer ul{
+		display:inline-block;
+		margin:4px 0 0;
+		
+	}
+	footer li{
+		list-style-type:none;
+		float:left;
+		font-family:"Source Sans Pro";
+		font-weight:400;
+		font-size:.85em;
+		
+	}
+	footer li + li a{
+		border-left:1px solid #ccc;
+	}
+	
+	footer li a{
+		text-decoration:none;
+		color:#aaa;
+		padding:0 5px;
+		
+	}
+	footer a:hover{
+		color:#777;
+	}
+</style>
+<body>
+<div id="wrapper">
+    <header>
+        <section id="title">
+            <h1>Stylin&#8217;with CSS</h1>
+            <h2>The blog and Books of Charles Wyke-Smith</h2>
+        </section>
+        <nav class="menu">
+            <ul>
+                <li class="choice1"><a href="#">Articles</a>
+                    <ul>
+                        <li><a href="#">hello</a></li>
+                        <li><a href="#">ok</a></li>
+                        <li><a href="#">why who</a></li>
+                    </ul>
+                </li>
+                <li class="choice2"><a href="#">Books</a>
+                    <ul>
+                        <li><a href="#">hello</a></li>
+                        <li><a href="#">ok</a></li>
+                        <li><a href="#">why who</a></li>
+                    </ul>
+                </li>
+                <li class="choice3"><a href="#">Resources</a></li>
+                <li class="choice4"><a href="#">Bookshelf</a></li>
+
+            </ul>
+
+        </nav>
+        <form class="search" action="#" method="post">
+
+            <label for="user_name">search</label>
+            <input type="text" id="user_name" name="user_name" placeholder="search" />
+        </form>
+    </header>
+    <section id="feature_are">
+        <article id="blog_leadoff">
+            <div class="inner">
+                <h4>September 7,2016</h4>
+                <a href="#"><h3>Managing CSS classes with jQuery</h3></a>
+                <img src="images/APPLE.png" alt="smile photo"/>
+                <p>在一九三一年的五月七日，纽约市民看到一桩从未见到过，骇人听闻的围捕格斗！凶手是个烟酒不沾，有「双枪」之称，叫「克劳雷」的罪犯。他被包围，陷落在西末街--他情人的公寓里。
+                    On May 7, 1931, the most sensational manhunt NewYork City had ever known had come to its climax. Afterweeks of search, “Two Gun” Crowley - the killer, thegunman who didn’t smoke or drink - was at bay, trappedin his sweetheart’s apartment on West End Avenue.
+                          </p>
+            </div>
+        </article>
+        <aside>
+            <form autocomplete="off" class="signin" action="" method="post">
+                <fieldset>
+                    <legend>
+                        <span>sign in for code and updates</span>
+                    </legend>
+                    <section>
+                        <label for="email">email</label>
+                        <input type="text" id="email" name="email" />
+                    </section>
+                    <section>
+                        <label for="password">password</label>
+                        <input type="password" id="password" name="password" />
+                        <p class="direction">Wrong username or password</p>
+                    </section>
+                    <section>
+                        <input type="submit" value="sing in" />
+                        <p class="signup">not signed up <a href="#">Register now!</a></p>
+                    </section>
+                </fieldset>
+
+            </form>
+            <nav>
+                <h3>recent Articles</h3>
+                <ul>
+	                <li><a href="#">Z-index&mdash;Layers of Confusion</a></li>
+	                <li><a href="#">Box-Images Techniques</a></li>
+	                <li><a href="#">Shadow Fx with CSS3</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </section>
+    <section id="book_area">
+        <article class="left">
+            <div class="inner">
+            	<h3>HTML5+CSS3</h3>
+            	<img src="images/book.png" alt="Stylin' with CSS cover"/>
+            	<aside>
+            		<ol>
+            			<li><a href="#">Download the Code</a></li>
+            			<li><a href="#">Tables of Contents</a></li>
+            			<li><a href="#">Buy this Book</a></li>
+            		</ol>
+            	</aside>
+            </div>
+        </article>
+         <article class="left">
+            <div class="inner">
+            	<h3>HTML5+CSS3</h3>
+            	<img src="images/book.png" alt="Stylin' with CSS cover"/>
+            	<aside>
+            		<ol>
+            			<li><a href="#">Download the Code</a></li>
+            			<li><a href="#">Tables of Contents</a></li>
+            			<li><a href="#">Buy this Book</a></li>
+            		</ol>
+            	</aside>
+            </div>
+        </article> <article class="right">
+            <div class="inner">
+            	<h3>HTML5+CSS3</h3>
+            	<img src="images/book.png" alt="Stylin' with CSS cover"/>
+            	<aside>
+            		<ol>
+            			<li><a href="#">Download the Code</a></li>
+            			<li><a href="#">Tables of Contents</a></li>
+            			<li><a href="#">Buy this Book</a></li>
+            		</ol>
+            	</aside>
+            </div>
+        </article> <article class="right">
+            <div class="inner">
+            	<h3>HTML5+CSS3</h3>
+            	<img src="images/book.png" alt="Stylin' with CSS cover"/>
+            	<aside>
+            		<ol>
+            			<li><a href="#">Download the Code</a></li>
+            			<li><a href="#">Tables of Contents</a></li>
+            			<li><a href="#">Buy this Book</a></li>
+            		</ol>
+            	</aside>
+            </div>
+        </article>
+    </section>
+    <footer>
+		<p>A CSS template from <a href="http://www.baidu.com"><em>Stylin'with CSS third Edition</em></a> by Charles Wyke-Smith</p>
+    	<nav>
+    		<ul>
+    			<li><a href="#">Privacy Policy</a></li>
+    			<li><a href="#">Privacy Policy</a></li>
+    		</ul>
+    	</nav>
+    </footer>
+</div>
+</body>
+</html>
