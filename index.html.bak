@@ -10,12 +10,12 @@
     	margin:50px 100px;
     	}
 </style>
-<script>
+<javascript>
 	function openWin(url){
 		window.open(url);
 	}
 	
-</script>
+</javascript>
 <body>
 	<div class="content">
 		
