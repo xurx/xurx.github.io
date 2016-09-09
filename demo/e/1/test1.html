@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>过滤空格</title>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+</head>
+<body>
+	<div class="demo1 tc">
+		<input class="input" type="text" value="[  是否去除空格  ]" id="input"/>
+		<button class="btn" id="btn">过滤</button>
+	</div>
+	<script type="text/javascript">
+		(function(){
+	        var input = document.getElementById('input');
+	        var btn = document.getElementById('btn');
+	        btn.onclick = function(){
+	            input.value = input.value.replace(/(\s|\u00A0)+|(\s|\u00A0)+/g,'');
+	        }
+    	}());
+	</script>
+</body>
+</html>
